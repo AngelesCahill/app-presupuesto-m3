@@ -24,7 +24,7 @@ body {
     border-radius: 10px;
 }
 .detalleGastos {
-    height: 10rem;
+    height: 100%;
     border: 1px solid green;
     margin: 0.5rem;
 }

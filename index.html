@@ -35,7 +35,7 @@
                 <form action="">
                     <div class="mb-3 px-3 entrada text-center">
                         <label for="presupuesto" class="form-label">Ingresa tu presupuesto</label>
-                        <input type="number" class="form-control m-1" id="presupuesto" name="presupuesto">
+                        <input type="number" class="form-control m-1" id="presupuesto" name="presupuesto" onfocus="this.value=''">
                         <button type="button" id="agregarPresupuesto" class="my-1 btn btn-success">Calcular</button>
                     </div>
                 </form>
@@ -55,8 +55,8 @@
                             <tbody>
                                 <tr id="montos">
                                     <td id="totalPresupuesto"></td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td id="totalGastos"></td>
+                                    <td id="saldo"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -70,10 +70,10 @@
                 <form action="">
                     <div class="mb-3 px-3 text-center inputGastos">
                         <label for="nombreGasto" class="form-label">Nombre del Gasto</label>
-                        <input type="text"class="form-control" id="nombreGasto" name="nombreGasto">
+                        <input type="text"class="form-control" id="nombreGasto" name="nombreGasto" onfocus="this.value=''">
                         <label for="montoGasto" class="form-label">Monto del Gasto</label>
-                        <input type="text"class="form-control" id="montoGasto" name="montoGasto">
-                        <button type="submit" class="my-2 btn btn-danger">Añadir Gasto</button>
+                        <input type="number"class="form-control" id="montoGasto" name="montoGasto" onfocus="this.value=''">
+                        <button type="button" class="my-2 btn btn-danger" id="agregarGasto">Añadir Gasto</button>
                     </div>
                 </form>
             </div>
@@ -87,12 +87,7 @@
                             <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td><i class="fas fa-trash"></i></td>
-                            </tr>
+                        <tbody id="datosGasto">
                         </tbody>
                     </table>
                 </div>
