@@ -69,17 +69,22 @@ $(document).ready(function () {
     borrar.addEventListener("click", function () {
       otroGasto;
       otroObjGasto;
+      totalGastos;
       console.log("eliminaras esta fila", otroGasto.id);
       console.log(otroObjGasto);
       let out = delete (otroObjGasto[otroGasto.id - 1]);
+      let out1 = delete (otroGasto[otroGasto.id - 1]);
+      let out3 = delete totalGastos[otroGasto.id - 1];
       let out2 = document.getElementById(`${otroGasto.id}`).remove();
       console.log(out)
-      console.log(out2)
+      console.log(out1);
+      console.log(out2);
+      console.log(out3);
       console.log(otroObjGasto);
+      console.log(otroGasto.valor);
       console.log(datosGasto);
-      if (otroObjGasto != otroObjGasto[otroGasto.id - 1]) {
-        
-      }
+      console.log(totalGastos)
+      restarSaldo();
     });
 
     let add = totalGastos.push(otroGasto.valor);
