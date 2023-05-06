@@ -9,7 +9,7 @@ $(document).ready(function () {
   let nombreGasto = document.getElementById("nombreGasto");
   let montoGasto = document.getElementById("montoGasto");
   let agregarGasto = document.getElementById("agregarGasto");
-  let datosGasto = document.getElementById('datosGasto');
+  let datosGasto = document.getElementById("datosGasto");
   let gasto = {
     id: 0,
     nombre: nombreGasto.value,
@@ -18,19 +18,23 @@ $(document).ready(function () {
   let totalGastos = [];
   console.log(totalGastos);
   let otroGasto;
-  
+  let otroObjGasto = [];
+  console.log(otroObjGasto);
+
   //agregar presupuesto
   agregarPresupuesto.addEventListener("click", () => {
     let presupuestoNuevo = document.getElementById("presupuesto").value;
     let nuevoValor = parseInt(presupuestoNuevo);
     let add;
-    
+
     if (nuevoValor <= 0) {
-      alert('Debe ingresar un monto mayor a 0');
+      alert("Debe ingresar un monto mayor a 0");
       presupuesto.innerHTML = "";
     } else {
       add = ingresarNuevaEntrada.push(nuevoValor);
-      sumaTotalPresup = ingresarNuevaEntrada.reduce((x, y) => { return x + y }, 0);
+      sumaTotalPresup = ingresarNuevaEntrada.reduce((x, y) => {
+        return x + y;
+      }, 0);
       console.log(sumaTotalPresup);
       totalPresupuesto.innerText = sumaTotalPresup;
     }
@@ -48,52 +52,59 @@ $(document).ready(function () {
     otroGasto.id = otroGasto.id + 1;
     otroGasto.nombre = nombreGasto.value;
     otroGasto.valor = parseInt(montoGasto.value);
-    console.log(otroGasto);
+
     datosGasto.innerHTML += ` 
-      <tr id=${otroGasto.id}>
+      <tr id=${otroGasto.id} class="fila">
         <td id="idGasto">${otroGasto.id}</td>
         <td id="valueGasto">${otroGasto.valor}</td>
         <td id="nameGasto">${otroGasto.nombre}</td>
-        <td><button class="my-2 btn btn-danger" type="button" id="${otroGasto.id}" name="eliminar" title="eliminar"><i class="fas fa-trash"></i></button></td>
+        <td>
+          <button class="my-2 btn btn-danger eliminar" type="button" id="${otroGasto.id}" name="eliminar" title="eliminar">Eliminar</button>
+        </td>
       </tr>
       <br>
     `;
+
+    let borrar = document.getElementById(`${otroGasto.id}`);
+    borrar.addEventListener("click", function () {
+      otroGasto;
+      otroObjGasto;
+      console.log("eliminaras esta fila", otroGasto.id);
+      console.log(otroObjGasto);
+      let out = delete (otroObjGasto[otroGasto.id - 1]);
+      let out2 = document.getElementById(`${otroGasto.id}`).remove();
+      console.log(out)
+      console.log(out2)
+      console.log(otroObjGasto);
+      console.log(datosGasto);
+      if (otroObjGasto != otroObjGasto[otroGasto.id - 1]) {
+        
+      }
+    });
+
     let add = totalGastos.push(otroGasto.valor);
     //sumar total gastos
-    sumarGastos = totalGastos.reduce((x, y) => {return x + y}, 0);
-    console.log(sumarGastos);
+    sumarGastos = totalGastos.reduce((x, y) => {
+      return x + y;
+    }, 0);
     if (sumarGastos > 0) {
       document.getElementById("totalGastos").innerText = sumarGastos;
     } else {
-      document.getElementById("totalGastos").innerText = 'sin gastos';
+      document.getElementById("totalGastos").innerText = "sin gastos";
     }
+    let add2 = otroObjGasto.push(otroGasto);
     restarSaldo();
     return sumarGastos;
   });
   function restarSaldo() {
-    sumaTotalPresup = ingresarNuevaEntrada.reduce((x, y) => {return x + y}, 0);
-    console.log(sumaTotalPresup);
-    sumarGastos = totalGastos.reduce((x, y) => {return x + y}, 0);
-    console.log(sumarGastos); 
+    sumaTotalPresup = ingresarNuevaEntrada.reduce((x, y) => {
+      return x + y;
+    }, 0);
+    sumarGastos = totalGastos.reduce((x, y) => {
+      return x + y;
+    }, 0);
     let saldoDisponible = sumaTotalPresup - sumarGastos;
     document.getElementById("saldo").innerText = saldoDisponible;
-  };
-  restarSaldo();
-  
-  let trash = document.getElementsByClassName("eliminar");
-  let id = trash.id;
-  let gastoEliminado = trash.addEventListener("click", () => {
-    totalGastos.filter((otroGasto) => {
-      if (otroGasto.id == id) {
-        let filaABorrar = document.getElementById(trash.id);
-        filaABorrar.remove();
-        console.log(filaABorrar);
-        return false;
-      }
-      return true;
-    });
-  });
+  }
+  //restarSaldo();
 });
-
-//let gastos = totalGastos.push(gasto);
-//console.log(totalGastos);
