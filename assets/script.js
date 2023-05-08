@@ -59,33 +59,12 @@ $(document).ready(function () {
         <td id="valueGasto">${otroGasto.valor}</td>
         <td id="nameGasto">${otroGasto.nombre}</td>
         <td>
-          <button class="my-2 btn btn-danger eliminar" type="button" id="${otroGasto.id}" name="eliminar" title="eliminar">Eliminar</button>
+          <button class="my-2 btn btn-danger eliminar" type="button" id="eliminar" name="eliminar" title="eliminar" onclick="eliminarGasto(${otroGasto.id})">Eliminar</button>
         </td>
       </tr>
       <br>
     `;
 
-    let borrar = document.getElementById(`${otroGasto.id}`);
-    borrar.addEventListener("click", function () {
-      otroGasto;
-      otroObjGasto;
-      totalGastos;
-      console.log("eliminaras esta fila", otroGasto.id);
-      console.log(otroObjGasto);
-      let out = delete (otroObjGasto[otroGasto.id - 1]);
-      let out1 = delete (otroGasto[otroGasto.id - 1]);
-      let out3 = delete totalGastos[otroGasto.id - 1];
-      let out2 = document.getElementById(`${otroGasto.id}`).remove();
-      console.log(out)
-      console.log(out1);
-      console.log(out2);
-      console.log(out3);
-      console.log(otroObjGasto);
-      console.log(otroGasto.valor);
-      console.log(datosGasto);
-      console.log(totalGastos)
-      restarSaldo();
-    });
 
     let add = totalGastos.push(otroGasto.valor);
     //sumar total gastos
@@ -110,6 +89,22 @@ $(document).ready(function () {
     }, 0);
     let saldoDisponible = sumaTotalPresup - sumarGastos;
     document.getElementById("saldo").innerText = saldoDisponible;
+    
   }
-  //restarSaldo();
+  //Eliminar gasto
+  function eliminarGasto(otroGasto, id) {
+    console.log("id:", identificado);
+        console.log("eliminaras esta fila", otroGasto.id);
+        console.log(otroObjGasto);
+        let out = delete otroObjGasto[otroGasto.id - 1];
+        let out1 = delete otroGasto[otroGasto.id - 1];
+        let out3 = delete totalGastos[otroGasto.id - 1];
+        let out2 = document.getElementById(`${otroGasto.id}`).remove();
+        restarSaldo();
+  }
+  eliminarGasto();
+
+  
+
+
 });
